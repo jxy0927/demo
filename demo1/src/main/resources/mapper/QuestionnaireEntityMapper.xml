@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.QuestionnaireEntityMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.dao.entity.QuestionnaireEntity">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+        <result column="questionnaire_name" jdbcType="VARCHAR" property="questionnaireName" />
+        <result column="questionnaire_content" jdbcType="VARCHAR" property="questionnaireContent" />
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+        <result column="stop_time" jdbcType="TIMESTAMP" property="stopTime" />
+        <result column="answer" jdbcType="VARCHAR" property="answer" />
+        <result column="questionid" jdbcType="CHAR" property="questionId" />
+        <result column="questionnaire_type" jdbcType="VARCHAR" property="questionnaireType" />
+        <result column="project_id" jdbcType="VARCHAR" property="projectId" />
+    </resultMap>
+
+
+
+    <insert id="insert" parameterType="com.example.demo.dao.entity.QuestionnaireEntity">
+        insert into questionnaire(id, project_name, questionnaire_name,
+        questionnaire_content, questionnaire_type,start_time,stop_time,
+        answer, questionid,project_id)
+        values (#{id,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR}, #{questionnaireName,jdbcType=VARCHAR},
+        #{questionnaireContent,jdbcType=VARCHAR}, #{questionnaireType,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP},
+        #{stopTime,jdbcType=TIMESTAMP},#{answer,jdbcType=VARCHAR},#{questionId,jdbcType=VARCHAR},#{projectId,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="queryQuestionnairetListByProjectId" parameterType="java.lang.String" resultType="com.example.demo.dao.entity.QuestionnaireEntity">
+    SELECT
+    *
+    FROM questionnaire
+    WHERE project_id = #{projectId,jdbcType=VARCHAR}
+  </select>
+
+    <update id="deleteQuestionnaireById" parameterType="com.example.demo.dao.entity.QuestionnaireEntity">
+        update questionnaire
+        set projectid = '0'
+        where id = #{id,jdbcType=VARCHAR}
+
+    </update>
+
+
+</mapper>

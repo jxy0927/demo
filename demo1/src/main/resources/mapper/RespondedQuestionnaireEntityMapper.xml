@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.RespondedQuestionnaireEntityMapper">
+
+    <select id="selectRespondedQuestionnaire" parameterType="java.lang.String" resultType="com.example.demo.dao.entity.RespondedQuestionnaireEntity">
+    SELECT
+    *
+    from respondedquestionnaire
+    WHERE projectid = #{projectId,jdbcType=VARCHAR}
+     </select>
+
+    <select id="selectRespondedQuestionnaireByName" parameterType="java.lang.String" resultType="com.example.demo.dao.entity.RespondedQuestionnaireEntity">
+    SELECT
+    *
+    from respondedquestionnaire
+    WHERE respondent = #{respondent,jdbcType=VARCHAR}
+  </select>
+
+</mapper>
+
